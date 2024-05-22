@@ -1,15 +1,21 @@
-import axios from 'axios';
-import { Make, Model } from '../types';
+const BASE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles';
 
-const API_BASE_URL = 'https://vpic.nhtsa.dot.gov/api/vehicles';
+interface MakeResponse {
+  Results: { MakeName: string }[];
+}
 
-export const fetchMakes = async (year: number): Promise<Make[]> => {
-  const response = await axios.get(`${API_BASE_URL}/GetMakesForVehicleType/car?format=json&modelYear=${year}`);
-  return response.data.Results;
+interface ModelResponse {
+  Results: { Model_Name: string }[];
+}
+
+export const fetchMakes = async (): Promise<string[]> => {
+  const response = await fetch(`${BASE_URL}/GetMakesForVehicleType/car?format=json`);
+  const data: MakeResponse = await response.json();
+  return data.Results.map((item) => item.MakeName);
 };
 
-export const fetchModels = async (make: string): Promise<Model[]> => {
-  const response = await axios.get(`${API_BASE_URL}/GetModelsForMakeYear/make/${make}/modelyear/2021?format=json`);
-  console.log(response)
-  return response.data.Results;
+export const fetchModels = async (make: string): Promise<string[]> => {
+  const response = await fetch(`${BASE_URL}/GetModelsForMake/${make}?format=json`);
+  const data: ModelResponse = await response.json();
+  return data.Results.map((item) => item.Model_Name);
 };

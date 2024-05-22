@@ -1,24 +1,29 @@
 import React from 'react';
-import { Make } from '../types';
 
 interface MakeSelectProps {
-  make: string | null;
-  setMake: (make: string) => void;
-  makes: Make[];
-  loading: boolean;
+  makes: string[];
+  selectedMake: string | null;
+  onMakeChange: (make: string) => void;
 }
 
-const MakeSelect: React.FC<MakeSelectProps> = ({ make, setMake, makes, loading }) => {
-  return (
-    <select value={make ?? ''} onChange={(e) => setMake(e.target.value)} disabled={loading || makes.length === 0}>
-      <option value="" disabled>Select Make</option>
-      {makes.map((make) => (
-        <option key={make.Make_ID} value={make.Make_Name}>
-          {make.Make_Name}
+const MakeSelect: React.FC<MakeSelectProps> = ({ makes, selectedMake, onMakeChange }) => (
+  <div className="vehicle-selector-field">
+    <label htmlFor="make-select" className="vehicle-selector-label">2 | Make</label>
+    <select
+      id="make-select"
+      className="vehicle-selector-select"
+      onChange={(e) => onMakeChange(e.target.value)}
+      value={selectedMake || ''}
+      disabled={!makes.length}
+    >
+      <option value="" disabled>Select make</option>
+      {makes.map((mk) => (
+        <option key={mk} value={mk}>
+          {mk}
         </option>
       ))}
     </select>
-  );
-};
+  </div>
+);
 
 export default MakeSelect;
