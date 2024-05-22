@@ -1,0 +1,62 @@
+/* src/VehicleSelector.css */
+.vehicle-selector-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  margin: 0 auto;
+  max-width: 1280px;
+  color: #333;
+}
+
+.vehicle-selector-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.vehicle-selector-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 1rem;
+  flex: 1;
+}
+
+.vehicle-selector-label {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.vehicle-selector-select {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  appearance: none;
+  background-color: #fff;
+  cursor: pointer;
+  color: #333;
+}
+
+.vehicle-selector-select:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+.vehicle-selector-header {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.vehicle-selector-subheader {
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
